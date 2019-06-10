@@ -12,11 +12,28 @@
 
     <?php
        // define variables and set to empty values
-       $arg1 = $output = $retc = "";
+       $arg1 = $j = $output = $retc = "";
+if ($i == 0){
+	$i = rand(1,64);
+
+	echo "Write the number ";
+        echo $i;
+        echo  " in Binary, always use 8 digits";
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      Arg1: <input type="text" name="arg1"><br>
+      <br>
+      <input type="submit" value="Go!">
+    </form>
+<?php
+while ($i == $j)
+{
+}
 
        if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $arg1 = test_input($_POST["arg1"]);
-         exec("/usr/lib/cgi-bin/correctCheck " . $arg1 . " " . $output, $retc);
+         exec("/usr/lib/cgi-bin/sp1a/correctCheck " . $arg1 . " " . $i , $output, $retc);
        }
 
        function test_input($data) {
@@ -25,13 +42,11 @@
          $data = htmlspecialchars($data);
          return $data;
        }
+
+
     ?>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-      Arg1: <input type="text" name="arg1"><br>
-      <br>
-      <input type="submit" value="Go!">
-    </form>
+
 
     <?php
        // only display if return code is numeric - i.e. exec has been called
@@ -44,10 +59,11 @@
          foreach ($output as $line) {
            echo $line;
            echo "<br>";
-       
+       }
          echo "<h2>Program Return Code:</h2>";
          echo $retc;
-       }
+	echo $arg2;
+       
     ?>
     
   </body>
