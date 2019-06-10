@@ -12,17 +12,17 @@
 
     <?php
        // define variables and set to empty values
-       $arg1 = $j = $output = $retc = "";
-if ($i == 0){
+       $arg1 = $arg2 = $output = $retc = "";
 	$i = rand(1,64);
 
 	echo "Write the number ";
         echo $i;
         echo  " in Binary, always use 8 digits";
-}
+
 ?>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
       Arg1: <input type="text" name="arg1"><br>
+      Arg2: <input type="text" name="arg2" value="<?php echo $i; ?>"><br>
       <br>
       <input type="submit" value="Go!">
     </form>
@@ -33,7 +33,8 @@ while ($i == $j)
 
        if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $arg1 = test_input($_POST["arg1"]);
-         exec("/usr/lib/cgi-bin/sp1a/correctCheck " . $arg1 . " " . $i , $output, $retc);
+         $arg2 = test_input($_POST["arg2"]);
+         exec("/usr/lib/cgi-bin/sp1a/correctCheck " . $arg1 . " " . $arg2 , $output, $retc);
        }
 
        function test_input($data) {
